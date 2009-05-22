@@ -6,3 +6,4 @@ db/test*
 db/production*
 tmp/*
 config/initializers/site_keys.rb
+private_variables.sh
