@@ -12,7 +12,5 @@ else
   exit
 fi
 
-export PORT_NUM=4321
-
 juggernaut -c juggernaut.yml &
-./script/server -p $PORT_NUM
+./script/server -p $RM_SITE_PORT -e $RM_RAILS_ENVIRONMENT
