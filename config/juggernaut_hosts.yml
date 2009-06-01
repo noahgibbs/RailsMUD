@@ -11,8 +11,8 @@
 
 :hosts:
   - :port: 5001
-    :host: arch.angelbob.com
-    #:public_host: arch.angelbob.com
+    :host: my.server.address.com
+    #:public_host: my.server.address.com
     #:public_port: 5001
     # :secret_key: your_secret_key
     # :environment: :development
