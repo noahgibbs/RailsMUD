@@ -5,8 +5,15 @@ things like "./script/server" already work.  If you don't know what that means,
 you should probably be relying on somebody else's prepackaged version of
 this software.
 
-  First, "cp pv.sh private_variables.sh", and change the appropriate values.
+Steps
+
+[ TODO: make this a 'run a script' step instead of involved and manual. ]
+
+* First, "cp pv.sh private_variables.sh", and change the appropriate values.
 This will set up your outbound mail server, admin account, passwords and
 so on.  Basically all private variables should wind up in this file.  That
 means you should never give read access to the file to anybody who isn't
 head administrator of your MUD.
+
+* Second, edit "config/juggernaut_hosts.yml" to match the domain of your
+game, and the deployment mode if you changed that.

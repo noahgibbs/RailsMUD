@@ -24,4 +24,12 @@ export RM_ADMIN_EMAIL=joesmith@myisp.com
 ### OPTIONAL SETTINGS
 # Below this line, every setting is optional.  You may want to set some,
 # but if you don't change them then things will still work okay.
+
+# Choose 'development' or 'release'
+# If you change this, change it in config/juggernaut_hosts as well!
 export RM_RAILS_ENVIRONMENT=development
+
+# Settings for the Juggernaut server, normally the same as the main
+# game server
+export RM_JUGGERNAUT_SERVER=$RM_SITE_ADDRESS
+export RM_JUGGERNAUT_PORT=5001
