@@ -16,14 +16,47 @@ a { color: #000; }
 a:visited { color: #666; }
 a:hover { color: #fff; background-color:#000; }
 
+.filename {
+  color: blue;
+  font-family: monospace;
+}
+
 .fieldWithErrors {
   padding: 2px;
   background-color: red;
   display: table;
 }
 
-#flashNotice {
+#flash_container {
+  background-color: #ffffd0;
+}
+
+#flash_notice {
   color: green;
+}
+
+#flash_warning {
+  color: yellow;
+}
+
+#flash_error {
+  color: red;
+}
+
+#loginBar {
+  background-color: #f0f0d0;
+  float: right;
+}
+
+#gameLogin {
+  background-color: #d0ffd0;
+  border: solid 3px green;
+  padding: 10px;
+  margin: 50px;
+}
+
+#gameLoginPara {
+  font-size: 300%;
 }
 
 #errorExplanation {

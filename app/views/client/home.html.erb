@@ -9,18 +9,44 @@
 </p>
 
 <p>
-  You can find it at <span style="color:blue; font-family: monospace">app/views/client/home.html.erb</span>.
+  You can find it at
+  <span class="filename">app/views/client/home.html.erb</span>.
 </p>
 
-<p id="loginPara">
-  JavaScript hasn't loaded yet or you have it turned off.
-</p>
+<div id="gameLogin">
+  <p id="gameLoginPara">
+    To go to the game <%= link_to("Click Here", :action => 'full') %>
+  </p>
+</div>
 
+<!-- The login/logout/name bar -->
+<div id="loginBar">
+<table>
+<tr>
+  <td id="regButton">
+    <%= button_to("Register", :controller => 'users', :action => 'new') %>
+  </td>
+  <td id="loginButton">
+    <%= button_to("Log In", :controller => 'sessions', :action => 'new') %>
+  </td>
+  <td id="logoutButton">
+    <%= button_to("Log Out", :controller => 'sessions', :action => 'destroy') %>
+  </td>
+  <td id="loginEntry">
+    JavaScript Off
+  </td>
+</tr>
+</table>
+</div>
+
+<!-- JavaScript for login and username stuff -->
 <script type="text/javascript">
   username = getCookie('login');
   if (username != null && username != "") {
-    $('loginPara').innerHTML = "Logged in as " + username
+    $('loginEntry').innerHTML = "Login: " + username
+    $('regButton').style.display = "none"
   } else {
-    $('loginPara').innerHTML = "Not logged in"
+    $('loginEntry').innerHTML = "Not logged in"
+    $('gameLogin').style.display = "none"
   }
 </script>
