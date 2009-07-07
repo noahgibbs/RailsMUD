@@ -21,13 +21,21 @@ export RM_ADMIN_NAME=joe_the_admin
 # The 'customer service' address your users are told to use
 export RM_ADMIN_EMAIL=joesmith@myisp.com
 
-### OPTIONAL SETTINGS
+############# OPTIONAL SETTINGS ########################################
 # Below this line, every setting is optional.  You may want to set some,
-# but if you don't change them then things will still work okay.
+# but if you don't change them then things will still work fine.
 
 # Choose 'development' or 'release'
 # If you change this, change it in config/juggernaut_hosts as well!
 export RM_RAILS_ENVIRONMENT=development
+
+############# EXPERT SETTINGS ##########################################
+# Please know a fair bit about the architecture of the server, how it works,
+# and what you're doing with it before you change anything below this line.
+
+# The port for the gameserver
+export RM_GAMESERVER_HOST=localhost
+export RM_GAMESERVER_PORT=6001
 
 # Settings for the Juggernaut server, normally the same as the main
 # game server
