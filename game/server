@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+gem "activesupport"
+require "#{File.dirname(__FILE__)}/juggernaut_connect.rb"
