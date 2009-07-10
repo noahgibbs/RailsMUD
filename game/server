@@ -2,3 +2,16 @@
 
 gem "activesupport"
 require "#{File.dirname(__FILE__)}/juggernaut_connect.rb"
+
+JuggernautConnect.connect
+
+while(true) do
+  responses = JuggernautConnect.poll
+  responses.each do |r|
+    print "GameServer sending...\n"
+    JuggernautConnect.send_to_all('alert("hi!");');
+  end
+
+  sleep 1
+  print "GameServer Looping...\n"
+end

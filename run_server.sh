@@ -16,9 +16,12 @@ fi
 # $RM_JUGGERNAUT_HOST must be this machine if you don't change this
 juggernaut -c juggernaut.yml &
 
+echo "Delaying while Juggernaut starts..."
+sleep 2
+
 # MUD server for coordinating the environment
 # $RM_GAMESERVER_HOST must be this machine if you don't change this
-./game/server -p $RM_GAMESERVER_PORT
+./game/server -p $RM_GAMESERVER_PORT &
 
 # Rails server for player UI and the web site
 ./script/server -p $RM_SITE_PORT -e $RM_RAILS_ENVIRONMENT
