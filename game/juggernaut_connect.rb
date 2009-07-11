@@ -6,27 +6,48 @@ require "erb"
 require "activesupport"
 
 module JuggernautConnect
-  # Code for configuration handling is taken from the Juggernaut Rails plugin
   CONFIG = YAML::load(ERB.new(IO.read("#{File.dirname(__FILE__)}/../config/juggernaut_hosts.yml")).result).freeze
   CR = "\0"
 
   def self.connect
     @sockets.nil? || @sockets.empty? or raise "Already connected to Juggernaut"
+    handshake = { :command => :subscribe,
+                  #:session_id => :foo,
+                  #:client_id => :bar,
+                  #:channels => []
+                }
 
     h = self.hosts
 
     @sockets = []
     @sockbuf = h.map { "" }
     h.each do |address|
-      @sockets << TCPSocket.new(address[:host], address[:port])
+      hash = handshake.dup
+      hash[:secret_key] = address[:secret_key] if address[:secret_key]
+
+      socket = TCPSocket.new(address[:host], address[:port])
+      socket.print(hash.to_json + CR)
+      socket.flush
+      @sockets << socket
     end 
 
     @sockets.each {|s| !s.nil?} or raise "Error opening sockets!"
   end
 
+  def self.disconnect
+    @sockets.each { |s| s.close }
+    @sockets = nil
+    @sockbuf = nil
+  end
+
+  def self.connected?
+    @sockets and !@sockets.empty?
+  end
+
   def self.poll
     res = []
-    @sockets.map do |s|
+    @sockets.each_index do |idx|
+        s = @sockets[idx]
         begin
 	  msg, s_sa = s.recv_nonblock(10240)
 	rescue Errno::EAGAIN, Errno::EWOULDBLOCK, Errno::EINTR,
@@ -38,18 +59,22 @@ module JuggernautConnect
           raise "Unfixable error [#{err}] reading from Juggernaut!"
 	end
 
-        unless msg.nil?
-          @sockbuf += msg
+	# An empty msg string is an EOF.  Nil means EWOULDBLOCK.
+        if msg == ""
+          self.disconnect
+          return []
+        elsif msg != nil
+          @sockbuf[idx] += msg
 
           empty_buffer = false # Whether we'll use up the whole buffer
-	  empty_buffer = true if @sockbuf.chomp!(CR)
+	  empty_buffer = true if @sockbuf[idx].chomp!(CR)
 
-          chunks = @sockbuf.split(CR)
-          @sockbuf = ""
-	  @sockbuf = chunks.pop unless empty_buffer
+          chunks = @sockbuf[idx].split(CR)
+          @sockbuf[idx] = ""
+	  @sockbuf[idx] = chunks.pop unless empty_buffer
           res += chunks
 	  print "JugCon: got #{chunks.size} chunks...\n"
-	  print "JugCon: chunks: #{' *** '.join(chunks)} (End chunks)\n"
+	  print "JugCon: chunks: #{chunks.join ' *** '} (End chunks)\n"
         end
 
 	print "JugCon: No message, but not blocking\n" if msg.nil?
@@ -68,17 +93,16 @@ module JuggernautConnect
     hash[:channels] = hash[:channels].to_a if hash[:channels]
     hash[:client_ids] = hash[:client_ids].to_a if hash[:client_ids]
 
-    self.hosts.each do |address|
-      begin
-        hash[:secret_key] = address[:secret_key] if address[:secret_key]
+    h = self.hosts
+    h.each_index do |idx|
+      address = h[idx]
+      socket = @sockets[idx]
 
-        @socket = TCPSocket.new(address[:host], address[:port])
-        # Do what Flash does
-        @socket.print(hash.to_json + CR)
-        @socket.flush
-      ensure
-        @socket.close if @socket and !@socket.closed?
-      end
+      hash[:secret_key] = address[:secret_key] if address[:secret_key]
+
+      # Zero-terminate
+      socket.print(hash.to_json + CR)
+      socket.flush
     end
   end
 
