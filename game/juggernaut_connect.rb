@@ -77,7 +77,7 @@ module JuggernautConnect
 	  print "JugCon: chunks: #{chunks.join ' *** '} (End chunks)\n"
         end
 
-	print "JugCon: No message, but not blocking\n" if msg.nil?
+	#print "JugCon: No message, but not blocking\n" if msg.nil?
     end
     res
   end

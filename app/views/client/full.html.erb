@@ -1,22 +1,19 @@
-<html>
-<head>
-  <title>Client Display</title>
-  <%= javascript_include_tag 'prototype', :juggernaut %>
-  <%= juggernaut :debug => false %>
-  <%= stylesheet_link_tag 'client' %>
-</head>
-<body>
-  <div id="main_display">
-    <ul id="chat_data" style="list-style:none">
-    </ul>
-  </div>
+<%= javascript_include_tag 'prototype', :juggernaut %>
+<%= juggernaut :debug => false, :client_id => @current_user.login %>
+<%= stylesheet_link_tag 'client' %>
 
-  <%= form_remote_tag(:url => { :action => :send_chat_data },
-                        :complete => "$('chat_input').value = ''" ) %>
-    <%= text_field_tag( 'chat_input', '', { :size => 20,
-                                            :id => 'chat_input'} ) %>
-    <%= submit_tag "Send" %>
-  </form>
+<p>
+  Logged in as <%= @current_user.login %>.
+</p>
 
-</body>
-</html>
+<div id="main_display">
+  <ul id="chat_data" style="list-style:none">
+  </ul>
+</div>
+
+<%= form_remote_tag(:url => { :action => :send_chat_data },
+                      :complete => "$('chat_input').value = ''" ) %>
+  <%= text_field_tag( 'chat_input', '', { :size => 20,
+                                          :id => 'chat_input'} ) %>
+  <%= submit_tag "Send" %>
+</form>

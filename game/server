@@ -13,7 +13,6 @@ while(JuggernautConnect.connected?) do
   end
 
   sleep 1
-  print "GameServer Looping...\n"
 end
 
 print "GameServer exited.\n"
