@@ -21,8 +21,9 @@
 
 <script type="text/javascript">
 //<![CDATA[
-function do_chat(str) {
-  Element.insert("chat_data", { top: "<li>" + str + "</li>" });
+function do_chat(client, str) {
+  Element.insert("chat_data", { top: "<li> &lt;" + client + "&gt;: " +
+                 str + "</li>" });
 }
 //]]>
 </script>

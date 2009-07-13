@@ -72,9 +72,17 @@ module JuggernautConnect
           chunks = @sockbuf[idx].split(CR)
           @sockbuf[idx] = ""
 	  @sockbuf[idx] = chunks.pop unless empty_buffer
-          res += chunks
 	  print "JugCon: got #{chunks.size} chunks...\n"
 	  print "JugCon: chunks: #{chunks.join ' *** '} (End chunks)\n"
+
+          newhashes = chunks.map {|chunk|
+            newhash = ActiveSupport::JSON.decode(chunk)
+	  }
+
+	  print "JugCon: got #{newhashes.size} hashes.\n"
+	  print "JugCon: hashes: #{newhashes.join ' *** '} (End hashes)\n"
+
+          res += newhashes
         end
 
 	#print "JugCon: No message, but not blocking\n" if msg.nil?

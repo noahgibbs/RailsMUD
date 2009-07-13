@@ -8,8 +8,27 @@ JuggernautConnect.connect
 while(JuggernautConnect.connected?) do
   responses = JuggernautConnect.poll
   responses.each do |r|
-    print "GameServer sending...\n"
+    #print "GameServer sending...\n"
     #JuggernautConnect.send_to_all('alert("hi!");');
+    raise "Invalid object received from JuggernautConn!" unless r.kind_of? Hash
+
+    rb = r['body']
+
+    print "GameServer: Received object with #{rb.class}-type body\n"
+
+    if rb.kind_of? String
+      print "GameServer: Received (JS?) string [#{rb}].  Not for us?\n"
+    elsif rb.kind_of? Hash
+      print "GameServer: Received JSON hash.  Process it.\n"
+      raise "Invalid JSON hash from JuggernautConn!" unless rb['type']
+      if rb['type'] == 'action'
+        print "GameServer: Got action #{rb['verb']} from #{rb['client']}.\n"
+      else
+        raise "Can't yet process non-action JSON hashes!"
+      end
+    else
+      raise "GameServer: Invalid object received from JuggernautConn!"
+    end
   end
 
   sleep 1
