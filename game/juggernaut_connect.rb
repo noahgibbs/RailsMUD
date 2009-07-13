@@ -13,8 +13,8 @@ module JuggernautConnect
     @sockets.nil? || @sockets.empty? or raise "Already connected to Juggernaut"
     handshake = { :command => :subscribe,
                   #:session_id => :foo,
-                  #:client_id => :bar,
-                  #:channels => []
+                  :client_id => :gameserver,
+                  :channels => [ :actions ]
                 }
 
     h = self.hosts

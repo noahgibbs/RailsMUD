@@ -1,5 +1,6 @@
 <%= javascript_include_tag 'prototype', :juggernaut %>
-<%= juggernaut :debug => false, :client_id => @current_user.login %>
+<%= juggernaut :debug => false, :client_id => @current_user.login,
+    :channels => [ :chat, :game ] %>
 <%= stylesheet_link_tag 'client' %>
 
 <p>
@@ -17,3 +18,11 @@
                                           :id => 'chat_input'} ) %>
   <%= submit_tag "Send" %>
 </form>
+
+<script type="text/javascript">
+//<![CDATA[
+function do_chat(str) {
+  Element.insert("chat_data", { top: "<li>" + str + "</li>" });
+}
+//]]>
+</script>
