@@ -14,7 +14,7 @@ module JuggernautConnect
     handshake = { :command => :subscribe,
                   #:session_id => :foo,
                   :client_id => :gameserver,
-                  :channels => [ :actions ]
+                  :channels => [ :action ]
                 }
 
     h = self.hosts
