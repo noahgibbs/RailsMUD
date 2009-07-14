@@ -56,6 +56,7 @@ module JuggernautConnect
           # The preceding are all recoverable "try again" errors
           msg = nil
         rescue => err
+	  self.disconnect
           raise "Unfixable error [#{err}] reading from Juggernaut!"
 	end
 

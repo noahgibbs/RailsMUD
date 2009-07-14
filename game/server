@@ -5,17 +5,24 @@ require "#{File.dirname(__FILE__)}/juggernaut_connect.rb"
 
 JuggernautConnect.connect
 
-while(JuggernautConnect.connected?) do
-  responses = JuggernautConnect.poll
-  responses.each do |r|
-    #print "GameServer sending...\n"
-    #JuggernautConnect.send_to_all('alert("hi!");');
-    raise "Invalid object received from JuggernautConn!" unless r.kind_of? Hash
+module GameServer
+  # How often to check for input
+  @@last_interval = Time.now
+  PollInterval = 1.second
 
-    rb = r['body']
+  def self.sleep_until_next_poll
+    # Sleep until PollInterval after the most recent polling
+    next_interval = @@last_interval + PollInterval
+    now = Time.now
 
-    print "GameServer: Received object with #{rb.class}-type body\n"
+    time_slept = 0
+    time_slept = next_interval - now if next_interval > now
 
+    @@last_interval = next_interval
+    sleep time_slept if time_slept > 0
+  end
+
+  def self.process_player_action(rb)
     if rb.kind_of? String
       print "GameServer: Received (JS?) string [#{rb}].  Not for us?\n"
     elsif rb.kind_of? Hash
@@ -31,7 +38,23 @@ while(JuggernautConnect.connected?) do
     end
   end
 
-  sleep 1
+  # The main loop
+  while(JuggernautConnect.connected?) do
+    responses = JuggernautConnect.poll
+    responses.each do |r|
+      #print "GameServer sending...\n"
+      #JuggernautConnect.send_to_all('alert("hi!");');
+      raise "Invalid object received from JuggernautConn!" unless r.kind_of? Hash
+
+      rb = r['body']
+      print "GameServer: Received object with #{rb.class}-type body\n"
+      self.process_player_action(rb)
+    end
+
+    # TODO: all that interesting game stuff
+
+    self.sleep_until_next_poll
+  end
 end
 
-print "GameServer exited.\n"
+print "GameServer: exited\n"
