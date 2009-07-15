@@ -1,0 +1,2 @@
+* Update juggernaut_hosts.yml to use environment variables (via Erb?),
+  and simplify INSTALL appropriately.
