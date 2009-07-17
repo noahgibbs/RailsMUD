@@ -13,7 +13,7 @@
 </div>
 
 <%= form_remote_tag(:url => { :action => :send_action_text },
-                    :complete => "$('action_input').value = ''" ) %>
+                    :complete => "$('action_text').value = ''" ) %>
   <%= text_field_tag('action_text', '', { :size => 30,
                                            :id => 'action_text' } ) %>
   <%= submit_tag "Do It" %>

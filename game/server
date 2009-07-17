@@ -4,6 +4,7 @@ $LOAD_PATH << File.join(File.expand_path(File.dirname(__FILE__)), "lib")
 
 gem "activesupport"
 require "juggernaut_connect.rb"
+require "player_action.rb"
 
 JuggernautConnect.connect
 
@@ -31,6 +32,7 @@ module GameServer
         raise "Invalid JSON hash from JuggernautConn!" unless rh['type']
         if rh['type'] == 'action'
           print "GameServer: Got action #{rh['verb']} from #{rh['client']}.\n"
+          PlayerAction.received(rh['verb'], rh['objects'])
         else
           print "GameServer: Can't yet process non-action JSON hashes!\n"
         end
