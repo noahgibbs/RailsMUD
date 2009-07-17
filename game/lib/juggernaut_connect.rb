@@ -6,7 +6,7 @@ require "erb"
 require "activesupport"
 
 module JuggernautConnect
-  CONFIG = YAML::load(ERB.new(IO.read("#{File.dirname(__FILE__)}/../config/juggernaut_hosts.yml")).result).freeze
+  CONFIG = YAML::load(ERB.new(IO.read("#{File.dirname(__FILE__)}/../../config/juggernaut_hosts.yml")).result).freeze
   CR = "\0"
 
   def self.connect

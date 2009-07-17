@@ -1,2 +1,4 @@
 * Update juggernaut_hosts.yml to use environment variables (via Erb?),
   and simplify INSTALL appropriately.
+
+* Add one or more lib directories to game subdir, and move files into them

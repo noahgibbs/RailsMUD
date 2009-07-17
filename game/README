@@ -1,0 +1,3 @@
+This is a sample game to demonstrate the RailsMUD skeleton.  Eventually, it'd
+be nice to formalize the API better and turn it into something more like a
+gem or plugin.  But for now, that's a bit premature.

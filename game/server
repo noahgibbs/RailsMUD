@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
 
+$LOAD_PATH << File.join(File.expand_path(File.dirname(__FILE__)), "lib")
+
 gem "activesupport"
-require "#{File.dirname(__FILE__)}/juggernaut_connect.rb"
+require "juggernaut_connect.rb"
 
 JuggernautConnect.connect
 
