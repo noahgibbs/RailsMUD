@@ -7,7 +7,20 @@
   Logged in as <%= @current_user.login %>.
 </p>
 
-<div id="main_display">
+<div id="world_area">
+  <p id="world_debug"> </p>
+  <p id="world_data"></p>
+</div>
+
+<%= form_remote_tag(:url => { :action => :send_action_text },
+                    :complete => "$('action_input').value = ''" ) %>
+  <%= text_field_tag('action_text', '', { :size => 30,
+                                           :id => 'action_text' } ) %>
+  <%= submit_tag "Do It" %>
+</form>
+
+<div id="chat_area">
+  <p id="chat_debug"> </p>
   <ul id="chat_data" style="list-style:none">
   </ul>
 </div>
@@ -16,14 +29,22 @@
                       :complete => "$('chat_input').value = ''" ) %>
   <%= text_field_tag( 'chat_input', '', { :size => 20,
                                           :id => 'chat_input'} ) %>
-  <%= submit_tag "Send" %>
+  <%= submit_tag "Chat" %>
 </form>
 
 <script type="text/javascript">
 //<![CDATA[
-function do_chat(client, str) {
+function add_chat(client, str) {
+  $('chat_debug').innerHTML = "Length: " + $('chat_data').childNodes.length
+
   Element.insert("chat_data", { top: "<li> &lt;" + client + "&gt;: " +
                  str + "</li>" });
+}
+function add_world_output(str) {
+
+}
+function replace_world_output(str) {
+
 }
 //]]>
 </script>

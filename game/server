@@ -24,16 +24,18 @@ module GameServer
     sleep time_slept if time_slept > 0
   end
 
-  def self.process_player_action(rb)
-    if rb.kind_of? String
-      print "GameServer: Received (JS?) string [#{rb}].  Not for us?\n"
-    elsif rb.kind_of? Hash
-      print "GameServer: Received JSON hash.  Process it.\n"
-      raise "Invalid JSON hash from JuggernautConn!" unless rb['type']
-      if rb['type'] == 'action'
-        print "GameServer: Got action #{rb['verb']} from #{rb['client']}.\n"
-      else
-        raise "Can't yet process non-action JSON hashes!"
+  def self.process_player_action(rbody)
+    if rbody.kind_of? String
+      begin
+        rh = ActiveSupport::JSON.decode(rbody)
+        raise "Invalid JSON hash from JuggernautConn!" unless rh['type']
+        if rh['type'] == 'action'
+          print "GameServer: Got action #{rh['verb']} from #{rh['client']}.\n"
+        else
+          print "GameServer: Can't yet process non-action JSON hashes!\n"
+        end
+      rescue ActiveSupport::JSON::ParseError
+        print "GameServer: Received non-JSON string [#{rbody}].  Not for us?\n"
       end
     else
       raise "GameServer: Invalid object received from JuggernautConn!"
