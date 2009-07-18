@@ -40,10 +40,16 @@ function add_chat(client, str) {
   Element.insert("chat_data", { top: "<li> &lt;" + client + "&gt;: " +
                  str + "</li>" });
 }
-function add_world_output(str) {
 
+function add_world_output(str) {
+  Element.insert("world_data", { bottom: str });
 }
+
 function replace_world_output(str) {
+  $('world_data').innerHTML = str
+}
+
+function world_eval(str) {
 
 }
 //]]>

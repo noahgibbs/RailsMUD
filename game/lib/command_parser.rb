@@ -1,5 +1,5 @@
 module CommandParser
-  def self.process(text)
+  def self.process(player, text)
     words = text.split
 
     verb = words.shift
