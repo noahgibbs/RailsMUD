@@ -9,6 +9,23 @@ class ClientController < ApplicationController
   def full
   end
 
+  # Juggernaut subscription URL
+  def jug_login
+    render :nothing => true
+  end
+
+  def jug_logout
+    render :nothing => true
+  end
+
+  def jug_con_logout
+    render :nothing => true
+  end
+
+  def jug_broadcast
+    render :nothing => true
+  end
+
   def send_chat_data
     render :juggernaut => { :type => :send_to_channel,
                             :channel => "chat" } do |p|

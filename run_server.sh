@@ -12,6 +12,9 @@ else
   exit
 fi
 
+# Rails server for player UI and the web site
+./script/server -p $RM_SITE_PORT -e $RM_RAILS_ENVIRONMENT &
+
 # Juggernaut server for pushing chat, text and certain AJAX data
 # $RM_JUGGERNAUT_HOST must be this machine if you don't change this
 juggernaut -c juggernaut.yml &
@@ -21,7 +24,4 @@ sleep 2
 
 # MUD server for coordinating the environment
 # $RM_GAMESERVER_HOST must be this machine if you don't change this
-./game/server -p $RM_GAMESERVER_PORT &
-
-# Rails server for player UI and the web site
-./script/server -p $RM_SITE_PORT -e $RM_RAILS_ENVIRONMENT
+./game/server -p $RM_GAMESERVER_PORT
