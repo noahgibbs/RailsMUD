@@ -8,3 +8,4 @@ tmp/*
 config/initializers/site_keys.rb
 config/juggernaut_hosts.yml
 private_variables.sh
+*.pid
