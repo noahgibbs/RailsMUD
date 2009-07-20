@@ -53,11 +53,15 @@ module GameServer
       raise "Invalid object received from JuggernautConn!" unless r.kind_of? Hash
 
       rb = r['body']
-      print "GameServer: Received object with #{rb.class}-type body\n"
-      self.process_player_action(rb)
+      begin
+        self.process_player_action(rb)
+      rescue => e
+        print e.inspect
+        print e.backtrace
+      end
     end
 
-    # TODO: all that interesting game stuff
+    # TODO: all that interesting game stuff not triggered by players
 
     self.sleep_until_next_poll
   end
