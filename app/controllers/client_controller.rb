@@ -11,17 +11,30 @@ class ClientController < ApplicationController
 
   # Juggernaut subscription URL
   def jug_login
+    #if(session[:user_id] != params[:client_id])
+    #  render :nothing => true, :status => 502
+    #  return
+    #end
+
+    hash = { :client => params[:client_id], :type => :action,
+             :verb => 'login', :objects => "" }
+    Juggernaut.send_to_client(hash.to_json, "gameserver")
     render :nothing => true
   end
 
   def jug_logout
+    hash = { :client => params[:client_id], :type => :action,
+             :verb => 'logout', :objects => "" }
+    Juggernaut.send_to_client(hash.to_json, "gameserver")
     render :nothing => true
   end
 
+  # We don't normally care about this, and it shouldn't normally happen
   def jug_con_logout
     render :nothing => true
   end
 
+  # Is this handled already by jug_login on connection?
   def jug_broadcast
     render :nothing => true
   end
