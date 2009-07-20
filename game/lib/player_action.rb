@@ -13,6 +13,7 @@ module PlayerAction
 
   def self.received(player, verb, objects)
     verb, objects = CommandParser.process(player, objects) if verb == 'parse'
+    objects = [objects] unless objects.kind_of? Array
 
     print "PlayerAction: #{verb} on [#{objects.join(" / ")}]\n"
 
