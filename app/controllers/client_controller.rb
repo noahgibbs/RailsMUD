@@ -19,14 +19,17 @@ class ClientController < ApplicationController
     hash = { :client => params[:client_id], :type => :action,
              :verb => 'login', :objects => "" }
     Juggernaut.send_to_client(hash.to_json, "gameserver")
-    render :nothing => true
+
+    # Juggernaut seems to sometimes need some text sent or it will take even
+    # a status of 200 as failure when it hits EOF.
+    render :text => "dummy"
   end
 
   def jug_logout
     hash = { :client => params[:client_id], :type => :action,
              :verb => 'logout', :objects => "" }
     Juggernaut.send_to_client(hash.to_json, "gameserver")
-    render :nothing => true
+    render :text => "dummy"
   end
 
   # We don't normally care about this, and it shouldn't normally happen
@@ -36,7 +39,7 @@ class ClientController < ApplicationController
 
   # Is this handled already by jug_login on connection?
   def jug_broadcast
-    render :nothing => true
+    render :text => "dummy"
   end
 
   def send_chat_data

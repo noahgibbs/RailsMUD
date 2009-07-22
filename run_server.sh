@@ -13,11 +13,13 @@ else
 fi
 
 # Rails server for player UI and the web site
-./script/server -p $RM_SITE_PORT -e $RM_RAILS_ENVIRONMENT &
+#./script/server -p $RM_SITE_PORT -e $RM_RAILS_ENVIRONMENT &
+ruby rails_control.rb start -- -p $RM_SITE_PORT -e $RM_RAILS_ENVIRONMENT
 
 # Juggernaut server for pushing chat, text and certain AJAX data
 # $RM_JUGGERNAUT_HOST must be this machine if you don't change this
-juggernaut -c juggernaut.yml &
+#juggernaut -c juggernaut.yml &
+ruby juggernaut_control.rb start
 
 echo "Delaying while Juggernaut starts..."
 sleep 2
@@ -25,3 +27,7 @@ sleep 2
 # MUD server for coordinating the environment
 # $RM_GAMESERVER_HOST must be this machine if you don't change this
 ./game/server -p $RM_GAMESERVER_PORT
+
+# Game server stopped, stop other servers
+ruby juggernaut_control.rb stop
+ruby rails_control.rb stop

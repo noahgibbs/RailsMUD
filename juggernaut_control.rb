@@ -10,7 +10,5 @@ require 'daemons'
 jugfile = File.join(File.expand_path(File.dirname(__FILE__)), "juggernaut.yml")
 cmdline = `which juggernaut`.chomp + " -c " + jugfile
 
-print "Cmd line: #{cmdline}\n"
-
 Daemons.run(cmdline, :dir_mode => :normal, :dir => ".",
-            :mode => :exec)
+            :mode => :exec, :log_output => true)
