@@ -10,6 +10,7 @@ export RM_SITE_NAME=MyMUD
 # is usually the one for your ISP.  The domain is the one you want your
 # outbound mail coming from.
 export RM_SMTP_SERVER=smtp.myisp.com
+export RM_SMTP_PORT=25
 export RM_SMTP_DOMAIN=$RM_SITE_ADDRESS
 export RM_SMTP_USER=joesmith
 export RM_SMTP_PASSWORD='j03_707411Y_r0xx0rz'
