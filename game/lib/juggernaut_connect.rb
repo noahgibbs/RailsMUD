@@ -5,6 +5,8 @@ require "socket"
 require "erb"
 require "activesupport"
 
+require File.dirname(__FILE__) + "/../jugger_keys.rb"
+
 module JuggernautConnect
   CONFIG = YAML::load(ERB.new(IO.read("#{File.dirname(__FILE__)}/../../config/juggernaut_hosts.yml")).result).freeze
   CR = "\0"
@@ -12,7 +14,7 @@ module JuggernautConnect
   def self.connect
     @sockets.nil? || @sockets.empty? or raise "Already connected to Juggernaut"
     handshake = { :command => :subscribe,
-                  #:session_id => :foo,
+                  :session_id => GS_login_session_id,
                   :client_id => :gameserver,
                   :channels => [ :action ]
                 }

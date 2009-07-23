@@ -1,5 +1,8 @@
+require File.dirname(__FILE__) + "/../../game/jugger_keys.rb"
+
 class ClientController < ApplicationController
   include AuthenticatedSystem
+  include JuggernautConnect      # To get shared secret keys
 
   before_filter :login_required, :only => [ 'full' ]
 
@@ -11,6 +14,16 @@ class ClientController < ApplicationController
 
   # Juggernaut subscription URL
   def jug_login
+    if params[:client_id] == "gameserver"
+      if params[:session_id] != GS_login_session_id
+        # That's not the shared secret we wanted.  Fail!
+        render :nothing => true, :status => 501
+        return
+      end
+      render :text => "dummy"
+      return
+    end
+
     #if(session[:user_id] != params[:client_id])
     #  render :nothing => true, :status => 502
     #  return
