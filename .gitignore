@@ -6,6 +6,7 @@ db/test*
 db/production*
 tmp/*
 config/initializers/site_keys.rb
+config/initializers/session_store.rb
 config/juggernaut_hosts.yml
 private_variables.sh
 *.pid
