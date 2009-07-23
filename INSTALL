@@ -18,3 +18,14 @@ head administrator of your MUD.
 * Second, "cp config/jh.yml config/juggernaut_hosts.yml" and change the
 appropriate values to match the domain of your game, and the deployment
 mode if you changed that.
+
+SECURITY
+
+There are cryptographic keys in several files that you should change.
+You can find cryptographic keys in the files
+config/initializers/site_keys.rb,
+config/initializers/session_store.rb, and game/jugger_keys.rb.
+
+If you just use the default values then they're not any good as
+cryptographic keys and your MUD can be hijacked in all sorts of awful
+ways!

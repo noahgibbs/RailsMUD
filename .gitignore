@@ -8,6 +8,7 @@ tmp/*
 config/initializers/site_keys.rb
 config/initializers/session_store.rb
 config/juggernaut_hosts.yml
+game/jugger_keys.rb
 private_variables.sh
 *.pid
 *.output
