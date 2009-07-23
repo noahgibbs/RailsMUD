@@ -12,6 +12,8 @@ else
   exit
 fi
 
+trap "ruby rails_control.rb stop; ruby juggernaut_control.rb stop; exit" INT TERM EXIT
+
 # Rails server for player UI and the web site
 #./script/server -p $RM_SITE_PORT -e $RM_RAILS_ENVIRONMENT &
 ruby rails_control.rb start -- -p $RM_SITE_PORT -e $RM_RAILS_ENVIRONMENT
