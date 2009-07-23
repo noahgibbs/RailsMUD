@@ -110,6 +110,7 @@ module JuggernautConnect
       socket = @sockets[idx]
 
       hash[:secret_key] = address[:secret_key] if address[:secret_key]
+      hash[:session_id] = GS_login_session_id
 
       # Zero-terminate
       socket.print(hash.to_json + CR)

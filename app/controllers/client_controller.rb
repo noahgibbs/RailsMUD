@@ -50,9 +50,18 @@ class ClientController < ApplicationController
     render :nothing => true
   end
 
-  # Is this handled already by jug_login on connection?
   def jug_broadcast
-    render :text => "dummy"
+    # Protect broadcasts from gameserver
+    if params[:client_id] == "gameserver"
+      if params[:session_id] != GS_login_session_id
+        render :nothing => true, :status => 501
+        return
+      end
+      render :text => "dummy"
+      return
+    end
+
+    render :nothing => true, :status => 501
   end
 
   def send_chat_data
