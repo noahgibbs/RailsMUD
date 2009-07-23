@@ -7,6 +7,11 @@ require "juggernaut_connect.rb"
 require "player_action.rb"
 
 JuggernautConnect.connect
+if JuggernautConnect.connected?
+  print "GameServer: Connected!\n"
+else
+  print "GameServer: Not Connected!\n"
+end
 
 module GameServer
   # How often to check for input
