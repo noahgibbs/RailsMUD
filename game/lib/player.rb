@@ -11,6 +11,10 @@ class Player
     include ERB::Util  # for html_escape aka h
   end
 
+  def initialize(login)
+    @login = login
+  end
+
   def self.get_names(players)
     players.map { |p|
       p.kind_of?(String) ? p : p.login
