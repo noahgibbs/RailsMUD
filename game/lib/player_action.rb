@@ -12,6 +12,14 @@ module PlayerAction
   end
 
   def self.received(player, verb, objects)
+    if verb == 'login'
+      Player.login(player, objects)
+      return
+    elsif verb == 'logout'
+      Player.logout(player, objects)
+      return
+    end
+
     verb, objects = CommandParser.process(player, objects) if verb == 'parse'
     objects = [objects] unless objects.kind_of? Array
 
