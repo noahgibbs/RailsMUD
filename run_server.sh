@@ -12,7 +12,8 @@ else
   exit
 fi
 
-trap "ruby rails_control.rb stop; ruby juggernaut_control.rb stop; exit" INT TERM EXIT
+# For now, crash and die on hangup, too.  That'll be worth changing later.
+trap "ruby rails_control.rb stop; ruby juggernaut_control.rb stop; exit" INT TERM EXIT HUP
 
 # Rails server for player UI and the web site
 #./script/server -p $RM_SITE_PORT -e $RM_RAILS_ENVIRONMENT &
