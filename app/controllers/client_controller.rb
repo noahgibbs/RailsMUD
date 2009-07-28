@@ -31,7 +31,8 @@ class ClientController < ApplicationController
     #end
 
     hash = { :client => params[:client_id], :type => :action,
-             :verb => 'login', :objects => [ :remote_ip => remote_ip ] }
+             :verb => 'login',
+             :objects => [ :remote_ip => request.remote_ip ] }
     Juggernaut.send_to_client(hash.to_json, "gameserver")
 
     # Juggernaut seems to sometimes need some text sent or it will take even
