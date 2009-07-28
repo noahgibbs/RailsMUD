@@ -10,6 +10,7 @@ class ClientController < ApplicationController
   end
 
   def full
+    @jcookie = cookies[ActionController::Base.session_options[:key]]
   end
 
   # Juggernaut subscription URL
@@ -24,12 +25,10 @@ class ClientController < ApplicationController
       return
     end
 
-    #request.session_options[:id] = params[:session_id]
-    #if(session[:user_id] != params[:client_id])
-    #  render :nothing => true, :status => 502
-    #  return
-    #end
-
+    if(current_user.login != params[:client_id])
+      render :nothing => true, :status => 502
+      return
+    end
     hash = { :client => params[:client_id], :type => :action,
              :verb => 'login',
              :objects => [ :remote_ip => request.remote_ip ] }

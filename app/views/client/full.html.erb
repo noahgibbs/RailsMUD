@@ -1,5 +1,6 @@
 <%= javascript_include_tag 'prototype', :juggernaut %>
 <%= juggernaut :debug => false, :client_id => @current_user.login,
+    :session_id => @jcookie,
     :channels => [ :chat, :game ] %>
 <%= stylesheet_link_tag 'client' %>
 
