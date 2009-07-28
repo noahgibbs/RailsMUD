@@ -24,13 +24,14 @@ class ClientController < ApplicationController
       return
     end
 
+    #request.session_options[:id] = params[:session_id]
     #if(session[:user_id] != params[:client_id])
     #  render :nothing => true, :status => 502
     #  return
     #end
 
     hash = { :client => params[:client_id], :type => :action,
-             :verb => 'login', :objects => "" }
+             :verb => 'login', :objects => [ :remote_ip => remote_ip ] }
     Juggernaut.send_to_client(hash.to_json, "gameserver")
 
     # Juggernaut seems to sometimes need some text sent or it will take even
