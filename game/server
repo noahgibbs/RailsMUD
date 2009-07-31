@@ -1,10 +1,14 @@
 #!/usr/bin/env ruby
 
+$LOAD_PATH << File.expand_path(File.dirname(__FILE__))
 $LOAD_PATH << File.join(File.expand_path(File.dirname(__FILE__)), "lib")
 
 gem "activesupport"
 require "juggernaut_connect.rb"
 require "player_action.rb"
+
+# Specific to GoblinMUD
+require "goblin_player.rb"
 
 JuggernautConnect.connect
 if JuggernautConnect.connected?

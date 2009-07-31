@@ -5,15 +5,25 @@ require "juggernaut_connect.rb"
 
 class Player
   attr :login
-  @@players = []
+  @@players = {}
+  @@playerclass = Player
 
   class << self
     include ActionView::Helpers::JavaScriptHelper # for javascript_escape
     include ERB::Util  # for html_escape aka h
   end
 
+  def self.playerClass
+    @@playerclass = self
+    print "Setting player class to #{self}\n"
+  end
+
   def initialize(login)
     @login = login
+  end
+
+  def self.server_login(name, objects)
+    @@playerclass.login(name, objects)
   end
 
   def self.login(name, objects)
@@ -21,8 +31,16 @@ class Player
     @@players[name] = p
   end
 
+  def self.server_logout(name, objects)
+    @@playerclass.logout(name, objects)
+  end
+
   def self.logout(name, objects)
     @@players[name] = nil
+  end
+
+  def self.get_player_by_name(name)
+    @@players[name]
   end
 
   def self.send_to_players(text, players)

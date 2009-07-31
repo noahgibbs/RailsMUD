@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40
   validates_uniqueness_of   :login
-  validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
+  validates_format_of       :login,    :with => /\A[A-Za-z0-9]+\Z/,
+  			    :message => Authentication.bad_login_message
 
   validates_format_of       :name,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
   validates_length_of       :name,     :maximum => 100

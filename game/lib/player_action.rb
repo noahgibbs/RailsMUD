@@ -13,10 +13,10 @@ module PlayerAction
 
   def self.received(player, verb, objects)
     if verb == 'login'
-      Player.login(player, objects)
+      Player.server_login(player, objects)
       return
     elsif verb == 'logout'
-      Player.logout(player, objects)
+      Player.server_logout(player, objects)
       return
     end
 
