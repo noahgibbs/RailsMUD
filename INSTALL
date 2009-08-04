@@ -19,6 +19,10 @@ head administrator of your MUD.
 appropriate values to match the domain of your game, and the deployment
 mode if you changed that.
 
+* Now type "rake db:migrate" from the root directory of RailsMUD.  It's
+a standard Rails thing, but if you don't then you'll get an ugly SQL
+error when you try to log in.
+
 SECURITY
 
 There are cryptographic keys in several files that you should change.
