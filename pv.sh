@@ -16,10 +16,12 @@ export RM_SMTP_USER=joesmith
 export RM_SMTP_PASSWORD='j03_707411Y_r0xx0rz'
 export RM_MAIL_PREFIX='[$RM_SITE_NAME]'
 
-# The name for the original admin account
+# The admin name for the original admin account
 export RM_ADMIN_NAME=joe_the_admin
 
-# The 'customer service' address your users are told to use
+# The 'customer service' address your users are told to use.
+# This may need to be a valid email address without any 'nospam' stuff
+# because some mail servers won't take email from fake domains.
 export RM_ADMIN_EMAIL=joesmith@myisp.com
 
 ############# OPTIONAL SETTINGS ########################################
