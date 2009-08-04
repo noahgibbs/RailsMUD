@@ -2,3 +2,5 @@
   and simplify INSTALL appropriately.
 
 * Exception notification for rails and game
+
+* Add display of flash to the login screen
