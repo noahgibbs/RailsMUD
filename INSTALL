@@ -15,10 +15,6 @@ so on.  Basically all private variables should wind up in this file.  That
 means you should never give read access to the file to anybody who isn't
 head administrator of your MUD.
 
-* Second, "cp config/jh.yml config/juggernaut_hosts.yml" and change the
-appropriate values to match the domain of your game, and the deployment
-mode if you changed that.
-
 * Now type "rake db:migrate" from the root directory of RailsMUD.  It's
 a standard Rails thing, but if you don't then you'll get an ugly SQL
 error when you try to log in.
