@@ -9,3 +9,11 @@ A: Have you run "rake db:migrate", like it says in the INSTALL file?
 
 A: Have you made sure that the admin email address in private_variables.sh
 is valid and spelled correctly?
+
+
+* When I do "run_server.sh", it starts, then the game server immediately
+disconnects!
+
+A: Type "./rails/server".  Are you getting an error message?  If so, you'll
+need to fix it.  If you didn't change anything, you could try Googling the
+error.
