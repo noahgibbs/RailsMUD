@@ -1,0 +1,11 @@
+TROUBLESHOOTING
+
+* When I try to log in, I get a weird database error about not finding a table!
+
+A: Have you run "rake db:migrate", like it says in the INSTALL file?
+
+
+* When I try to log in, I get a weird error about an MX record!
+
+A: Have you made sure that the admin email address in private_variables.sh
+is valid and spelled correctly?
