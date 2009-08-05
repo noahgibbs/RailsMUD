@@ -1,0 +1,98 @@
+For Goblin Whispers, the game design will initially be based on rumors and
+status within the goblin community.
+
+The idea is that there are brief phases where goblins go off to do
+things -- work, relax, sneak, forage, explore or whatever.  The
+goblins will need or want to do some of these fairly frequently, so a
+goblin might have to go and forage at least a time or three per day,
+for instance.
+
+The goblins each have health, status and trustworthiness.  They're
+trying to increase status where possible, sometimes by increasing
+their trustworthiness.  Health is important because without it, it's
+very hard to be active.  Health is basically a determination of how
+hard the goblin can work or play, and how often they need to stop to
+forage.
+
+Different types of activities can directly affect those statistics,
+but mostly goblins affect them by giving information -- telling
+stories, sharing information, sharing rumors or making up lies.
+
+In each segment of time, each goblin chooses an activity.  During that
+activity, the goblin may also choose to interact with some other
+goblin, possibly limited by what activity each chooses -- goblins
+could work together, but couldn't talk if one is working and one is
+exploring, for instance.  Certain activities (foraging, exploring)
+might be solitary or might not.  I'll have to see how it plays before
+deciding.
+
+Activities can directly affect trustworthiness, status or health
+slightly, but mostly they're opportunities for socializing.
+
+Working would increase status slightly, and possibly trustworthiness.
+It would also decrease health somewhat.
+
+Relaxing should allow more socializing.  Perhaps two attempts instead
+of one?  It would decrease health slightly (less than working), but
+might decrease status since the goblin is lazing rather than working.
+
+Foraging increases health to allow more turns of other activities, but
+would prevent at least some kinds of socializing.
+
+Exploring would allow a goblin to come back with artifacts, food or
+information, in a random way.  Normally it would decrease health
+slightly (more than relaxing, less than working), and add a random
+amount of status if successful.  However, it's a solitary activity so
+the goblin can have rumors spread about them in their absence.
+
+Sneaking, if allowed, would be a way to spy on other goblins for
+information, or sabotage their status or trustworthiness.  It would
+decrease health about as much as working does.
+
+To make all of this more fun, it would be important to time when you
+did things so that you could, for instance, relax when a trustworthy
+goblin did if you wanted to socialize with them.
+
+Socializing would depend who you did it with.  All relaxing goblins
+would socialize together, all resting goblins would socialize
+together.  Sneaking and exploring goblins wouldn't socialize with
+anybody.  Foraging goblins might be able to do some limited
+socializing, but not much.
+
+A social action would consist of one of the following:
+
+A goblin can talk to another goblin and impart up to two stories.
+Stories can be rumors or useful information.
+
+A goblin socializing with another goblin can make a trade.  The trade
+can be for information, objects from exploration, future
+considerations or nothing at all.  The trade doesn't have to be in
+good faith on either side.  Lying is fine.
+
+Goblins by themselves (unable to socialize with any other goblin, but
+not sneaking, foraging or exploring) may make up a lie about another
+goblin.
+
+Goblins foraging or working together may share up to one rumor or
+piece of information.  Foraging and working goblins may not take other
+social actions.
+
+Resting goblins get two social actions instead of one.  They can take
+the same action twice, if they want to.  For instance, they could
+share up to four rumors in a round.  They could trade with two
+different goblins.  Or they could share two rumors and then trade with
+one goblin.
+
+A sneaking goblin chooses one other goblin to follow, before knowing
+what action that goblin has selected for the round (all actions are
+chosen without knowing, though goblins can say what they will do --
+and can lie, if they choose).  If the followed goblin is also
+sneaking, the value of the first goblin's sneaking is lost.  If the
+followed goblin is relaxing, working or foraging, the sneaking goblin
+will hear any rumors or information that the goblin gives or receives
+in that time.  If the followed goblin is exploring, the sneaking
+goblin receives any information the followed goblin finds, but not any
+objects, status, trustworthiness or other bonuses.  If the followed
+goblin is working, the sneaking goblin may also choose to sabotage
+that work, giving negative status and/or trustworthiness for the
+round.
