@@ -1,3 +1,6 @@
-* Exception notification for rails and game
+* Exception notification for rails and game server
 
-* Add display of flash to the login screen
+* Add 'lost password' link
+* Add 'delete account' link
+* OpenID?
+* Allow multiple accounts per email address?
