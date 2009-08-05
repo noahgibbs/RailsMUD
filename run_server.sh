@@ -12,6 +12,15 @@ else
   exit
 fi
 
+if [ -r crypto_keys.sh ]
+then
+  . crypto_keys.sh
+else
+  echo Generating new cryptographic keys for this installation.
+  ./script/generate rg_crypto_keys
+  . crypto_keys.sh
+fi
+
 # For now, crash and die on hangup, too.  That'll be worth changing later.
 trap "ruby rails_control.rb stop; ruby juggernaut_control.rb stop; exit" INT TERM EXIT HUP
 
