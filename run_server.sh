@@ -17,7 +17,7 @@ then
   . crypto_keys.sh
 else
   echo Generating new cryptographic keys for this installation.
-  ./script/generate rg_crypto_keys
+  RM_RAILS_SESSION_SECRET="NotAVeryGoodSecretButItLetsTheGeneratorRun" ./script/generate rg_crypto_keys
   . crypto_keys.sh
 fi
 
