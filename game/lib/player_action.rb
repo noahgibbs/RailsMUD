@@ -1,12 +1,12 @@
 gem "actionpack"
+gem "railsgame"
+require "railsgame"
 require "action_view/erb/util"
 
 require 'command_parser.rb'
 require 'player.rb'
 
-module PlayerAction
-  JC = JuggernautConnect
-
+module RailsGame::PlayerAction
   class << self
     include ERB::Util
   end
