@@ -1,12 +1,12 @@
 require File.dirname(__FILE__) + "/lib/player.rb"
 
-class GoblinPlayer < Player
+class GoblinPlayer < RailsGame::Player
   playerClass
 
   def self.login(name, objects)
     super(name, objects)
-    player = Player.get_player_by_name(name)
-    Player.send_to_players("Welcome to GoblinMUD, #{name}! <br />", name);
+    player = RailsGame::Player.get_player_by_name(name)
+    RailsGame::Player.send_to_players("Welcome to GoblinMUD, #{name}! <br />", name);
   end
 
   def self.logout(name, objects)

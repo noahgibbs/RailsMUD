@@ -5,7 +5,7 @@ require "socket"
 require "erb"
 require "activesupport"
 
-module JuggernautConnect
+module RailsGame::JuggernautConnect
   CONFIG = YAML::load(ERB.new(IO.read("#{File.dirname(__FILE__)}/../../config/juggernaut_hosts.yml")).result).freeze
   CR = "\0"
 

@@ -13,7 +13,7 @@ module RailsGame::PlayerAction
 
   def self.received(player, verb, objects)
     if verb == 'login'
-      Player.server_login(player, objects)
+      RailsGame::Player.server_login(player, objects)
       return
     elsif verb == 'logout'
       Player.server_logout(player, objects)
@@ -26,7 +26,7 @@ module RailsGame::PlayerAction
     print "PlayerAction: #{verb} on [#{objects.join(" / ")}]\n"
 
     if verb == 'think'
-      Player.send_to_players("You think to yourself, \"#{h objects.join(' ')}\". <br />",
+      RailsGame::Player.send_to_players("You think to yourself, \"#{h objects.join(' ')}\". <br />",
                              [player])
     end
   end

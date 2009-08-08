@@ -5,14 +5,18 @@ $LOAD_PATH << File.join(File.expand_path(File.dirname(__FILE__)), "lib")
 
 gem "activesupport"
 gem "railsgame"
+require "railsgame"
+require "command_parser.rb"
 require "juggernaut_connect.rb"
+require "player.rb"
 require "player_action.rb"
+require "location.rb"
 
 # Example game file
 require "goblin_player.rb"
 
-JuggernautConnect.connect
-if JuggernautConnect.connected?
+RailsGame::JuggernautConnect.connect
+if RailsGame::JuggernautConnect.connected?
   print "GameServer: Connected!\n"
 else
   print "GameServer: Not Connected!\n"
@@ -55,11 +59,9 @@ module GameServer
   end
 
   # The main loop
-  while(JuggernautConnect.connected?) do
-    responses = JuggernautConnect.poll
+  while(RailsGame::JuggernautConnect.connected?) do
+    responses = RailsGame::JuggernautConnect.poll
     responses.each do |r|
-      #print "GameServer sending...\n"
-      #JuggernautConnect.send_to_all('alert("hi!");');
       raise "Invalid object received from JuggernautConn!" unless r.kind_of? Hash
 
       rb = r['body']

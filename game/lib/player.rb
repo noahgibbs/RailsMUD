@@ -1,12 +1,11 @@
 gem "actionpack"
 require "action_view"
 require "action_view/erb/util"
-require "juggernaut_connect.rb"
 
-class Player
+class RailsGame::Player
   attr :login
   @@players = {}
-  @@playerclass = Player
+  @@playerclass = RailsGame::Player
 
   class << self
     include ActionView::Helpers::JavaScriptHelper # for javascript_escape
@@ -27,7 +26,7 @@ class Player
   end
 
   def self.login(name, objects)
-    p = Player.new(name)
+    p = RailsGame::Player.new(name)
     @@players[name] = p
   end
 
@@ -47,7 +46,7 @@ class Player
     players = [players] unless players.kind_of? Array
 
     str = "try {\nadd_world_output(\"#{escape_javascript(text)}\");\n} catch (e) { alert('GS error:\\n\\n' + e.toString()); alert('add_world_output(\\\"\#{text}\\\");'); throw e }"
-    JuggernautConnect.send_to_clients(str, self.get_names_from_objs(players))
+    RailsGame::JuggernautConnect.send_to_clients(str, self.get_names_from_objs(players))
   end
 
   private
