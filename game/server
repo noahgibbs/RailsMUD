@@ -1,20 +1,19 @@
 #!/usr/bin/env ruby
 
 $LOAD_PATH << File.expand_path(File.dirname(__FILE__))
-$LOAD_PATH << File.join(File.expand_path(File.dirname(__FILE__)), "lib")
 
 gem "activesupport"
 gem "railsgame"
 require "railsgame"
-require "command_parser.rb"
-require "juggernaut_connect.rb"
-require "player.rb"
-require "player_action.rb"
-require "location.rb"
 
 # Example game file
 require "goblin_player.rb"
 
+RailsConfigDir = File.expand_path(File.join(File.dirname(__FILE__),
+					    "..", "config"))
+JuggernautHosts = File.join(RailsConfigDir, "juggernaut_hosts.yml")
+
+RailsGame::JuggernautConnect.config_file(JuggernautHosts)
 RailsGame::JuggernautConnect.connect
 if RailsGame::JuggernautConnect.connected?
   print "GameServer: Connected!\n"

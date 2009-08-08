@@ -1,4 +1,5 @@
-require File.dirname(__FILE__) + "/lib/player.rb"
+gem "railsgame"
+require "railsgame"
 
 class GoblinPlayer < RailsGame::Player
   playerClass
