@@ -1,5 +1,8 @@
 * Exception notification for rails and game server
 
+* Plugin-ify middleware object
+* Add generator for client controller to plugin
+
 * Add 'lost password' link
 * Add 'delete account' link
 * OpenID?

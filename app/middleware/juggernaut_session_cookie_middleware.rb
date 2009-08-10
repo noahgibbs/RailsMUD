@@ -7,9 +7,10 @@ class JuggernautSessionCookieMiddleware
   end
 
   def call(env)
+    params = {}
     if env['HTTP_USER_AGENT'] =~ /^Ruby\//
-      params = ::Rack::Utils.parse_query(env['QUERY_STRING'])
-      env['HTTP_COOKIE'] = [ @session_key, params['session_id'] ].join('=').freeze unless params['session_id'].nil?
+      req = Rack::Request.new(env)
+      env['HTTP_COOKIE'] = [ @session_key, req.params['session_id'] ].join('=').freeze unless req.params['session_id'].nil? || req.params['client_id'] == 'gameserver'
     end
     @app.call(env)
   end

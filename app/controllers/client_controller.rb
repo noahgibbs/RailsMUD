@@ -1,7 +1,13 @@
 class ClientController < ApplicationController
   include AuthenticatedSystem
 
+  protect_from_forgery :except => ['jug_login', 'jug_logout',
+  		       	       	   'jug_con_logout', 'jug_broadcast']
+
   before_filter :login_required, :only => [ 'full' ]
+
+  include ActionView::Helpers::JavaScriptHelper # for escape_javascript
+  include ERB::Util # for html_escape, aka h()
 
   def home
   end
@@ -63,12 +69,10 @@ class ClientController < ApplicationController
   end
 
   def send_chat_data
-    render :juggernaut => { :type => :send_to_channel,
-                            :channel => "chat" } do |p|
-      #p.insert_html :top, 'chat_data', "<li>#{h params[:chat_input]}</li>"
-      p << "add_chat(\"#{current_user.login}\", " +
-        "\"#{escape_javascript h params[:chat_input]}\");"
-    end
+    command = "add_chat(\"#{current_user.login}\", " +
+        "\"#{escape_javascript h params[:chat_input]}\")"
+    js = "try { #{command} } catch(e) { alert('chat error') } "
+    Juggernaut.send_to_channels(js, ["chat"]);
     render :nothing => true
   end
 
