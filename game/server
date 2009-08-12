@@ -6,7 +6,8 @@ gem "activesupport"
 gem "railsgame"
 require "railsgame"
 
-# Example game file
+# Example game files
+require "example_room.rb"
 require "example_player.rb"
 
 RailsConfigDir = File.expand_path(File.join(File.dirname(__FILE__),
@@ -17,6 +18,7 @@ server = RailsGame::Server.new
 server.jug_hosts_file(JuggernautHosts)
 server.connect
 
+# Just prints whether connection was successful
 if server.connected?
   print "GameServer: Connected!\n"
 else
