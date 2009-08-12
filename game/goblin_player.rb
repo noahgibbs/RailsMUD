@@ -6,8 +6,8 @@ class GoblinPlayer < RailsGame::Player
 
   def self.login(name, objects)
     super(name, objects)
-    player = RailsGame::Player.get_player_by_name(name)
-    RailsGame::Player.send_to_players("Welcome to GoblinMUD, #{name}! <br />", name);
+    player = RailsGame::Player.by_name(name)
+    player.send_html("Welcome to GoblinMUD, #{name}! <br />")
   end
 
   def self.logout(name, objects)

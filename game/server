@@ -13,69 +13,16 @@ RailsConfigDir = File.expand_path(File.join(File.dirname(__FILE__),
 					    "..", "config"))
 JuggernautHosts = File.join(RailsConfigDir, "juggernaut_hosts.yml")
 
-RailsGame::JuggernautConnect.config_file(JuggernautHosts)
-RailsGame::JuggernautConnect.connect
-if RailsGame::JuggernautConnect.connected?
+server = RailsGame::Server.new
+server.jug_hosts_file(JuggernautHosts)
+server.connect
+
+if server.connected?
   print "GameServer: Connected!\n"
 else
   print "GameServer: Not Connected!\n"
 end
 
-module GameServer
-  # How often to check for input
-  @@last_interval = Time.now
-  PollInterval = 1.second
-
-  def self.sleep_until_next_poll
-    # Sleep until PollInterval after the most recent polling
-    next_interval = @@last_interval + PollInterval
-    now = Time.now
-
-    time_slept = 0
-    time_slept = next_interval - now if next_interval > now
-
-    @@last_interval = next_interval
-    sleep time_slept if time_slept > 0
-  end
-
-  def self.process_player_action(rbody)
-    if rbody.kind_of? String
-      begin
-        rh = ActiveSupport::JSON.decode(rbody)
-        raise "Invalid JSON hash from JuggernautConn!" unless rh['type']
-        if rh['type'] == 'action'
-          print "GameServer: Got action #{rh['verb']} from #{rh['client']}.\n"
-          RailsGame::PlayerAction::received(rh['client'], rh['verb'], rh['objects'])
-        else
-          print "GameServer: Can't yet process non-action JSON hashes!\n"
-        end
-      rescue ActiveSupport::JSON::ParseError
-        print "GameServer: Received non-JSON string [#{rbody}].  Not for us?\n"
-      end
-    else
-      raise "GameServer: Invalid object received from JuggernautConn!"
-    end
-  end
-
-  # The main loop
-  while(RailsGame::JuggernautConnect.connected?) do
-    responses = RailsGame::JuggernautConnect.poll
-    responses.each do |r|
-      raise "Invalid object received from JuggernautConn!" unless r.kind_of? Hash
-
-      rb = r['body']
-      begin
-        self.process_player_action(rb)
-      rescue => e
-        print e.inspect
-        print e.backtrace
-      end
-    end
-
-    # TODO: all that interesting game stuff not triggered by players
-
-    self.sleep_until_next_poll
-  end
-end
+server.loop_while_connected
 
 print "GameServer: exited\n"
