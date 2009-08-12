@@ -7,7 +7,7 @@ gem "railsgame"
 require "railsgame"
 
 # Example game file
-require "goblin_player.rb"
+require "example_player.rb"
 
 RailsConfigDir = File.expand_path(File.join(File.dirname(__FILE__),
 					    "..", "config"))
