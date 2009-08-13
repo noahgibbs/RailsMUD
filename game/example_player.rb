@@ -1,10 +1,25 @@
 gem "railsgame"
 require "railsgame"
 
+gem "activerecord"
+require "activerecord"
+
+require File.dirname(__FILE__) + "/../config/environment"
+
 require "example_room.rb"
 
-class ExamplePlayer
+class ExamplePlayer < ActiveRecord::Base
   include RailsGame::Player
+  @@ar_init = false
+
+  def self.activerecord_init
+    unless @@ar_init
+      config = YAML::load(ERB.new(IO.read(db_conf_file)).result)
+      ActiveRecord::Base.configurations = config
+      ActiveRecord::Base.establish_connection(config[ENV['RM_RAILS_ENVIRONMENT']])
+      @@ar_init = true
+    end
+  end
 
   def self.login(name, objects)
     RailsGame::Player.login(name, objects)
