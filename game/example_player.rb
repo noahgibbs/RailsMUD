@@ -3,11 +3,11 @@ require "railsgame"
 
 require "example_room.rb"
 
-class ExamplePlayer < RailsGame::Player
-  playerClass
+class ExamplePlayer
+  include RailsGame::Player
 
   def self.login(name, objects)
-    super(name, objects)
+    RailsGame::Player.login(name, objects)
     player = RailsGame::Player.by_name(name)
     player.send_html("Welcome to #{ENV['RM_SITE_NAME']}, #{name}! <br />")
 
@@ -17,7 +17,7 @@ class ExamplePlayer < RailsGame::Player
 
   def self.logout(name, objects)
     player.move_to(nil)
-    super(name, objects)
+    RailsGame::Player.logout(name, objects)
   end
 
 end
