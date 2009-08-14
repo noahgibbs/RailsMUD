@@ -16,4 +16,12 @@ disconnects!
 
 A: Type "./rails/server".  Are you getting an error message?  If so, you'll
 need to fix it.  If you didn't change anything, you could try Googling the
-error.
+error.  Maybe something has the wrong version?
+
+* When I run scripts or rake tasks, I get some weird error about
+'ensure_secret_secure'.  What's up with that?
+
+You'll need to source the crypto_keys.sh file, and maybe also
+private_variables.sh.  When you do 'run_server.sh' it does this for you.
+To source the file, go to the Rails directory and type ". crypto_keys.sh"
+and ". private_variables.sh".
