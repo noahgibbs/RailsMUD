@@ -32,6 +32,9 @@ export RM_ADMIN_EMAIL=joesmith@myisp.com
 # If you change this, change it in config/juggernaut_hosts as well!
 export RM_RAILS_ENVIRONMENT=development
 
+# Set to override which Rails version to use
+export RM_RAILS_VERSION=2.3.3
+
 ############# EXPERT SETTINGS ##########################################
 # Please know a fair bit about the architecture of the server, how it works,
 # and what you're doing with it before you change anything below this line.
