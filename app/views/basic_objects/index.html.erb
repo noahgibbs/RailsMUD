@@ -1,0 +1,22 @@
+<h1>Listing Objects</h1>
+
+<table>
+  <tr>
+    <th>Base description</th>
+    <th>Name</th>
+  </tr>
+
+<% @basic_objects.each do |basic_object| %>
+  <tr>
+    <td><%=h basic_object.base_description %></td>
+    <td><%=h basic_object.name %></td>
+    <td><%= link_to 'Show', basic_object %></td>
+    <td><%= link_to 'Edit', edit_basic_object_path(basic_object) %></td>
+    <td><%= link_to 'Destroy', basic_object, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New object', new_basic_object_path %>

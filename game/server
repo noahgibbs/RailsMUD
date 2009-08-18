@@ -4,18 +4,27 @@ $LOAD_PATH << File.expand_path(File.dirname(__FILE__))
 
 RAILS_GEM_VERSION = (ENV['RM_RAILS_GEM_VERSION'] || '2.3.3') unless defined? RAILS_GEM_VERSION
 
-gem "activesupport"
+require File.dirname(__FILE__) + "/../config/environment"
+
 gem "railsgame"
 require "railsgame"
 
-# Example game files
-require "example_room.rb"
-require "example_player.rb"
-
 RailsConfigDir = File.expand_path(File.join(File.dirname(__FILE__),
 					    "..", "config"))
-JuggernautHosts = File.join(RailsConfigDir, "juggernaut_hosts.yml")
+RailsModelsDir = File.expand_path(File.join(File.dirname(__FILE__), "..",
+					    "app", "models"))
 
+JuggernautHosts = File.join(RailsConfigDir, "juggernaut_hosts.yml")
+$LOAD_PATH << RailsModelsDir
+
+# ActiveRecord models for game objects
+require "basic_object.rb"
+require "basic_room.rb"
+require "example_room.rb"
+require "basic_mobile.rb"
+require "example_player.rb"
+
+# Actually create the server
 server = RailsGame::Server.new
 server.jug_hosts_file(JuggernautHosts)
 server.connect

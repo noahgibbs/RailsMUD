@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  base_description: Columns rise to the ceiling.  You see a stuffed wombat here.
+  name: WombatRoom
+
+two:
+  base_description: This room looks remarkably boring, for a room full of lava.
+  name: BoringLavaRoom

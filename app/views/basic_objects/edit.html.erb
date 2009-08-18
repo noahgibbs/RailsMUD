@@ -1,0 +1,20 @@
+<h1>Editing RailsMUD Object</h1>
+
+<% form_for(@basic_object) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :base_description %><br />
+    <%= f.text_field :base_description %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @basic_object %> |
+<%= link_to 'Back', basic_objects_path %>

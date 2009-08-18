@@ -4,10 +4,7 @@ require "railsgame"
 gem "activerecord"
 require "activerecord"
 
-require File.dirname(__FILE__) + "/../config/environment"
-
 require "example_room.rb"
-require "example_mobile.rb"
 
 class BasicPlayer < BasicMobile
   include RailsGame::Player  # This sets BasicPlayer as the active Player class
@@ -15,7 +12,7 @@ class BasicPlayer < BasicMobile
 
   def self.activerecord_init
     unless @@ar_init
-      db_conf_file = File.dirname(__FILE__) + "/../config/database.yml"
+      db_conf_file = File.join(RailsConfigDir, "database.yml")
       config = YAML::load(ERB.new(IO.read(db_conf_file)).result)
       ActiveRecord::Base.configurations = config
       ActiveRecord::Base.establish_connection(config[ENV['RM_RAILS_ENVIRONMENT']])
