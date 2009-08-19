@@ -2,14 +2,14 @@
 
 <table>
   <tr>
-    <th>Base description</th>
     <th>Name</th>
+    <th>Description</th>
   </tr>
 
 <% @basic_objects.each do |basic_object| %>
   <tr>
-    <td><%=h basic_object.base_description %></td>
     <td><%=h basic_object.name %></td>
+    <td><%=h basic_object.base_description %></td>
     <td><%= link_to 'Show', basic_object %></td>
     <td><%= link_to 'Edit', edit_basic_object_path(basic_object) %></td>
     <td><%= link_to 'Destroy', basic_object, :confirm => 'Are you sure?', :method => :delete %></td>
