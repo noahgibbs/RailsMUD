@@ -20,12 +20,15 @@ $LOAD_PATH << RailsModelsDir
 # ActiveRecord models for game objects
 require "basic_object.rb"
 require "basic_room.rb"
-require "example_room.rb"
 require "basic_mobile.rb"
+
+# Game objects that don't touch Rails directly
+require "example_room.rb"
 require "example_player.rb"
+require "rm_verbs.rb"
 
 # Actually create the server
-server = RailsGame::Server.new
+server = RailsMUDServer.new
 server.jug_hosts_file(JuggernautHosts)
 server.connect
 
