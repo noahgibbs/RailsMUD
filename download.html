@@ -1,0 +1,90 @@
+<html>
+<head>
+<title> RailsGame: Downloads and Source Code </title>
+</head>
+<body>
+
+<h2> Source Code and Downloads </h2>
+
+<p>
+  It's very early in development, so there's no stable version yet.
+</p>
+
+<p>
+  Development is in a <a href="http://github.com/noahgibbs/RailsGame/">GitHub
+  repository</a>.  You'll need git installed to get the source code.
+</p>
+
+<p>
+  You can get the occasional glimpse of what's going on with RailsGame on
+  my <a href="http://blog.angelbob.com">development blog</a>.
+</p>
+
+<h3> Getting Git </h3>
+
+<p>
+  Under Ubuntu, you can install git by typing "sudo apt-get install git-core"
+  and then download the repository by typing
+  "git clone git://github.com/noahgibbs/RailsGame.git /my/sourcedir/railsgame".
+</p>
+
+<h2> Building with RailsGame </h2>
+
+<p>
+  You'll need a standard Rails setup working -- MySQL, Rails itself,
+  RubyGems.  You should be able to run a simple "hello world"-type
+  Rails app before you even begin to attempt something like RailsGame
+  with multiple auxiliary servers -- make sure Rails works first!
+  Get more than the basic "hello world" Rails page, as well, so that
+  you can verify that you've got access to a database.  SQLite is *not*
+  recommended if you're serious about running this game for long!
+</p>
+
+<p>
+  It's probably easiest to run Rails locally, first.  Deploying Rails
+  is easier than it used to be, but it's still a complicated operation
+  with many choices for how to do it.
+</p>
+
+<p>
+  You'll need several gems installed:
+  <tt>rake gems:install</tt> from your Rails directory.
+</p>
+
+<p>
+  There's no compiling needed for RailsGame.  Ruby isn't that kind of
+  language.  You can pretty much just run it in place once you have
+  the tools it needs installed.
+</p>
+
+<p>
+  You can either install RailsGame as a plugin (or GemPlugin), or
+  you can download a sample app that already uses it, such as
+  <a href="http://github.com/noahgibbs/RailsMUD">RailsMUD</a>.
+</p>
+
+<h3> Installing </h3>
+
+<p>
+  You'll need to copy and customize the file pv.sh into private_variables.sh,
+  as the INSTALL file tells you to.  This lets RailsGame know the machine and
+  address it's running on, where its mail server is, what you want to name
+  your game server, what email address it should direct your admin mail to,
+  and so on.  This is important if you'll be running a game server that the
+  public can connect to.
+</p>
+
+<p>
+  See the file INSTALL for the latest instructions.
+</p>
+
+<h3> Running </h3>
+
+<p>
+  You'll need a "./run_server.sh" script or the equivalent.  See
+  RailsMUD for an example.  There should be an easy way to generate it
+  soon, if there isn't already, or you can start from RailsMUD and
+  modify.
+</p>
+
+</body>
