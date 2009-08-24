@@ -7,25 +7,14 @@ this software.
 
 Steps
 
-[ TODO: make this a 'run a script' step instead of involved and manual. ]
+[ TODO: see what more of this can be automated ]
 
-* First, "cp pv.sh private_variables.sh", and change the appropriate values.
-This will set up your outbound mail server, admin account, passwords and
-so on.  Basically all private variables should wind up in this file.  That
-means you should never give read access to the file to anybody who isn't
-head administrator of your MUD.
+* First, "cp pv.sh private_variables.sh", and change the appropriate
+values.  This will set up your outbound mail server, admin account,
+passwords and so on.  Basically all private variables should wind up
+in this file.  That means you should never give read access to the
+file to anybody who isn't head administrator of your MUD.
 
-* Now type "rake db:migrate" from the root directory of RailsMUD.  It's
-a standard Rails thing, but if you don't then you'll get an ugly SQL
-error when you try to log in.
-
-SECURITY
-
-There are cryptographic keys in several files that you should change.
-You can find cryptographic keys in the files
-config/initializers/site_keys.rb,
-config/initializers/session_store.rb, and game/jugger_keys.rb.
-
-If you just use the default values then they're not any good as
-cryptographic keys and your MUD can be hijacked in all sorts of awful
-ways!
+* Now type "rake db:migrate" from the root directory of RailsMUD.
+It's a standard Rails thing, but if you don't then you'll get an ugly
+SQL error when you try to log in.

@@ -25,3 +25,7 @@ You'll need to source the crypto_keys.sh file, and maybe also
 private_variables.sh.  When you do 'run_server.sh' it does this for you.
 To source the file, go to the Rails directory and type ". crypto_keys.sh"
 and ". private_variables.sh".
+
+If you don't have a "crypto_keys.sh" file, type "./script/generate
+rg_crypto_keys" to generate one.  Normally "./run_script.sh" should
+have already done this for you (if you've ever run it).
