@@ -8,7 +8,6 @@ require "example_room.rb"
 
 class BasicPlayer < BasicMobile
   include RailsGame::Player  # This sets BasicPlayer as the active Player class
-  @@ar_init = false
 
   def self.login(name, objects)
     RailsGame::Player.login(name, objects)
