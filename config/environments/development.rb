@@ -13,11 +13,5 @@ config.action_controller.consider_all_requests_local = true
 config.action_view.debug_rjs                         = true
 config.action_controller.perform_caching             = false
 
-# Configure SMTP server for SpeakEasy outgoing mail server
-config.action_mailer.smtp_settings = { :address => ENV['RM_SMTP_SERVER'],
-    :port => 25, :domain => ENV['RM_SMTP_DOMAIN'],
-    :user_name => ENV['RM_SMTP_USER'], :password => ENV['RM_SMTP_PASSWORD'],
-    :authentication => :login }
-
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = true

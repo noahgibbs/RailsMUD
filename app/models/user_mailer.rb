@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
     setup_email(user)
     @subject    += 'Please activate your new account'
 
-    @body[:url]  = ENV['RM_SITE_URL'] + "/activate/#{user.activation_code}"
+    @body[:url]  = "#{ENV['RM_SITE_URL']}/activate/#{user.activation_code}"
 
   end
 

@@ -7,12 +7,14 @@ RAILS_GEM_VERSION = (ENV['RM_RAILS_GEM_VERSION'] || '2.3.3') unless defined? RAI
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
+  config.gem 'railsgame'
+  config.gem 'maccman-juggernaut', :lib => 'juggernaut', :source => 'http://gems.github.com'
+  config.gem 'daemons'
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
 
   # Add additional load paths for your own custom dirs
-  # config.load_paths += %W( #{RAILS_ROOT}/extras )
   config.load_paths += %W( #{RAILS_ROOT}/app/middleware )
 
   # Specify gems that this application depends on and have them installed with rake gems:install
@@ -21,9 +23,6 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "rubyist-aasm", :lib => "aasm", :source => "http://gems.github.com"
-  config.gem "daemons"
-  config.gem "railsgame"
-  config.gem "maccman-juggernaut", :lib => "juggernaut", :source => "http://gems.github.com"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -34,7 +33,6 @@ Rails::Initializer.run do |config|
   # config.frameworks -= [ :active_record, :active_resource, :action_mailer ]
 
   # Activate observers that should always be running
-  # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
   config.active_record.observers = :user_observer
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
