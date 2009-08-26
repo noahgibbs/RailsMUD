@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
   def activation(user)
     setup_email(user)
     @subject    += 'Your account has been activated!'
-    @body[:url]  = "#{ENV['RM_SITE_URL']}"
+    @body[:url]  = "#{ENV['RM_SITE_URL']}/"
   end
 
   protected

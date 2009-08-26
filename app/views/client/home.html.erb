@@ -13,11 +13,13 @@
   <span class="filename">app/views/client/home.html.erb</span>.
 </p>
 
+<% if @current_user %>
 <div id="gameLogin">
   <p> <span id="gameLoginPara">
     <%= link_to("Click Here", :action => 'full') %> </span>
   </p>
 </div>
+<% end %>
 
 <!-- The login/logout/name bar -->
 <div id="loginBar">
@@ -33,20 +35,9 @@
     <%= button_to("Log Out", :controller => 'sessions', :action => 'destroy') %>
   </td>
   <td id="loginEntry">
-    JavaScript Off
+    <%= @current_user ? "Logged in as #{@current_user.login}" :
+                        "Not Logged In" %>
   </td>
 </tr>
 </table>
 </div>
-
-<!-- JavaScript for login and username stuff -->
-<script type="text/javascript">
-  username = getCookie('login');
-  if (username != null && username != "") {
-    $('loginEntry').innerHTML = "Login: " + username
-    $('regButton').style.display = "none"
-  } else {
-    $('loginEntry').innerHTML = "Not logged in"
-    $('gameLogin').style.display = "none"
-  }
-</script>
