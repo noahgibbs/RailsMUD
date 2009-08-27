@@ -23,9 +23,9 @@ require "basic_room.rb"
 require "basic_mobile.rb"
 
 # Game objects that don't touch Rails directly
-require "example_room.rb"
-require "example_player.rb"
-require "rm_verbs.rb"
+require "start_location.rb"
+require "player.rb"
+require "actions.rb"
 
 # Actually create the server
 server = RailsMUDServer.new
