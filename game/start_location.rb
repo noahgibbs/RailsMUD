@@ -1,6 +1,6 @@
 # Basic 'void' room, guaranteed to exist.  It can't be linked to ActiveRecord
 # rooms via exits, nor can they be linked to it.
-class StartRoom
+class StartLocation
   include RailsGame::Location
   include Singleton
 
@@ -11,4 +11,4 @@ class StartRoom
 end
 
 # Instantiate it
-StartRoom.instance()
+StartLocation.instance()

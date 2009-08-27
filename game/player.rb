@@ -14,7 +14,7 @@ class BasicPlayer < BasicMobile
     player = RailsGame::Player.by_name(name)
     player.send_html("Welcome to #{ENV['RM_SITE_NAME']}, #{name}! <br />")
 
-    player.move_to(StartRoom.instance())
+    player.move_to(StartLocation.instance())
     player.show_current_location
   end
 
