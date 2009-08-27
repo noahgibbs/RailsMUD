@@ -18,14 +18,14 @@ JuggernautHosts = File.join(RailsConfigDir, "juggernaut_hosts.yml")
 $LOAD_PATH << RailsModelsDir
 
 # ActiveRecord models for game objects
-require "basic_object.rb"
-require "basic_room.rb"
-require "basic_mobile.rb"
+require "basic_object"
+require "basic_room"
+require "basic_mobile"
 
 # Game objects that don't touch Rails directly
-require "start_location.rb"
-require "player.rb"
-require "actions.rb"
+require "start_location"
+require "player"
+require "actions"
 
 # Actually create the server
 server = RailsMUDServer.new
