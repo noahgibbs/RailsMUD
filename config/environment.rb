@@ -1,7 +1,7 @@
 # Be sure to restart your server when you modify this file
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = (ENV['RM_RAILS_GEM_VERSION'] || '2.3.3') unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = (ENV['RG_RAILS_GEM_VERSION'] || '2.3.3') unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -43,8 +43,8 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 
   # Configure SMTP server for outgoing mail server
-  config.action_mailer.smtp_settings = { :address => ENV['RM_SMTP_SERVER'],
-    :port => ENV['RM_SMTP_PORT'], :domain => ENV['RM_SMTP_DOMAIN'],
-    :user_name => ENV['RM_SMTP_USER'], :password => ENV['RM_SMTP_PASSWORD'],
+  config.action_mailer.smtp_settings = { :address => ENV['RG_SMTP_SERVER'],
+    :port => ENV['RG_SMTP_PORT'], :domain => ENV['RG_SMTP_DOMAIN'],
+    :user_name => ENV['RG_SMTP_USER'], :password => ENV['RG_SMTP_PASSWORD'],
     :authentication => :login }
 end

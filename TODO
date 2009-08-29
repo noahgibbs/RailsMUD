@@ -1,9 +1,1 @@
-* Exception notification for rails and game server
-
 * Change 'client' to 'game' controller and re-diff
-* Rename files in game subdir to match RailsGame
-
-* Add 'lost password' link
-* Add 'delete account' link
-* OpenID?
-* Allow multiple accounts per email address?

@@ -10,8 +10,8 @@
 # :environment (optional)     limit host to a particular RAILS_ENV
 
 :hosts:
-  - :port: <%= ENV['RM_JUGGERNAUT_PORT'] %>
-    :host: <%= ENV['RM_JUGGERNAUT_SERVER'] %>
+  - :port: <%= ENV['RG_JUGGERNAUT_PORT'] %>
+    :host: <%= ENV['RG_JUGGERNAUT_SERVER'] %>
     #:public_host: 127.0.0.1
     #:public_port: 5001
     # :secret_key: your_secret_key
