@@ -1,4 +1,4 @@
-class ClientController < ApplicationController
+class GameController < ApplicationController
   include AuthenticatedSystem
 
   protect_from_forgery :except => ['jug_login', 'jug_logout',
@@ -10,11 +10,11 @@ class ClientController < ApplicationController
   include ERB::Util # for html_escape, aka h()
 
   def home
-    current_user  # sets @current_user
+    current_user   # set @current_user variable
   end
 
   def full
-    current_user  # sets @current_user
+    current_user   # set @current_user variable
     @jcookie = cookies[ActionController::Base.session_options[:key]]
   end
 
