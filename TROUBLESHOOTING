@@ -28,4 +28,4 @@ and ". private_variables.sh".
 
 If you don't have a "crypto_keys.sh" file, type "./script/generate
 rg_crypto_keys" to generate one.  Normally "./run_script.sh" should
-have already done this for you (if you've ever run it).
+do this for you the first time you run it.
