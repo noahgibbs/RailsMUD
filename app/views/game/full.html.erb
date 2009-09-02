@@ -8,9 +8,10 @@
   Logged in as <%= @current_user.login %>.
 </p>
 
+<div id="rg_containers">
 <div id="world_area">
-  <p id="world_debug"> </p>
-  <p id="world_data"></p>
+  <p id="world_debug" class="debug"> </p>
+  <p id="world_data" class="data"></p>
 </div>
 
 <%= form_remote_tag(:url => { :action => :send_action_text },
@@ -21,8 +22,8 @@
 </form>
 
 <div id="chat_area">
-  <p id="chat_debug"> </p>
-  <ul id="chat_data" style="list-style:none">
+  <p id="chat_debug" class="debug"> </p>
+  <ul id="chat_data" class="data" style="list-style:none">
   </ul>
 </div>
 
@@ -32,6 +33,7 @@
                                           :id => 'chat_input'} ) %>
   <%= submit_tag "Chat" %>
 </form>
+</div>
 
 <script type="text/javascript">
 //<![CDATA[

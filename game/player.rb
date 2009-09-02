@@ -4,7 +4,7 @@ require "railsgame"
 gem "activerecord"
 require "activerecord"
 
-require "start_location.rb"
+require "start_location"
 
 class BasicPlayer < BasicMobile
   include RailsGame::Player  # This sets BasicPlayer as the active Player class
