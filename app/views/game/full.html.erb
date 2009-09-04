@@ -8,7 +8,6 @@
   Logged in as <%= @current_user.login %>.
 </p>
 
-<div id="rg_containers">
 <div id="world_area">
   <p id="world_debug" class="debug"> </p>
   <p id="world_data" class="data"></p>
@@ -21,26 +20,15 @@
   <%= submit_tag "Do It" %>
 </form>
 
-<div id="chat_area">
-  <p id="chat_debug" class="debug"> </p>
-  <ul id="chat_data" class="data" style="list-style:none">
-  </ul>
-</div>
-
-<%= form_remote_tag(:url => { :action => :send_chat_data },
-                      :complete => "$('chat_input').value = ''" ) %>
-  <%= text_field_tag( 'chat_input', '', { :size => 20,
-                                          :id => 'chat_input'} ) %>
-  <%= submit_tag "Chat" %>
-</form>
-</div>
+<%= render :partial => "railsgame/chat_container",
+           :locals => { :id => 'chat', :submit_url => { :action => :send_chat_data } } %>
 
 <script type="text/javascript">
 //<![CDATA[
 function add_chat(client, str) {
-  $('chat_debug').innerHTML = "Length: " + $('chat_data').childNodes.length
+  $('chat_debug').innerHTML = "Length: " + $('chat_list').childNodes.length
 
-  Element.insert("chat_data", { top: "<li> &lt;" + client + "&gt;: " +
+  Element.insert("chat_list", { top: "<li> &lt;" + client + "&gt;: " +
                  str + "</li>" });
 }
 
