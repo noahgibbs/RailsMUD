@@ -1,8 +1,10 @@
 <%= javascript_include_tag 'prototype', :juggernaut %>
-<%= juggernaut :debug => false, :client_id => @current_user.login,
+<%= juggernaut :client_id => @current_user.login,
     :session_id => @jcookie,
+    :debug => false,
     :channels => [ :chat, :game ] %>
-<%= stylesheet_link_tag 'client' %>
+<%= stylesheet_link_tag 'game' %>
+<%= javascript_include_tag 'railsgame' %>
 
 <p>
   Logged in as <%= @current_user.login %>.
@@ -21,7 +23,7 @@
 </form>
 
 <%= render :partial => "railsgame/chat_container",
-           :locals => { :id => 'chat', :submit_url => { :action => :send_chat_data } } %>
+           :locals => { :id => 'chat' } %>
 
 <script type="text/javascript">
 //<![CDATA[

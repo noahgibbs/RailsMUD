@@ -2,10 +2,10 @@
 #*#
 log/*.log
 log/*.pid
+script/server.pid
 log/*.output
 db/*.db
 db/*.sqlite3
-script/*.pid
 tmp/**/*
 pkg/*
 config/database.yml
